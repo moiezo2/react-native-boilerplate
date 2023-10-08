@@ -5,12 +5,30 @@ import {
     StyleSheet,
     Text,
     ActivityIndicator,
-    Button
+    TextInput,
+    ScrollView
 } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 // import { Button } from '@rneui/themed';
-import LinearGradient from 'react-native-linear-gradient';
 import { useUserStore } from '../../stores/usersStore';
+import { getScaledFont } from '../../components/common/FontSize';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from '../../components/common/ResponsiveScreen';
+import { appBgColour, appThemeColour } from '../../constants';
+import InputField from '../../components/common/InputField';
+import FoodCard from '../../components/common/foodCards/FoodCard';
+
+const dummyFavouriteFoodData = [
+    {
+        title: "Qeema mutor",
+        price: "10 Aed",
+        description: "Its a very speacial dish with muttors"
+    },
+    {
+        title: "Chicken Qarahi",
+        price: "10 Aed",
+        description: "Its a very speacial dish with muttors"
+    }
+]
 
 
 
@@ -31,15 +49,22 @@ const HomeScreen = ({ navigation }: SectionProps) => {
     }, [users])
     return (
         <View style={styles.container}>
-            {
-                loading ?
-                    <ActivityIndicator />
-                    : users?.map((val: any) => {
-                        return (
-                            <View style={{ flex: 0.05, borderBottomWidth: 0.5, borderBottomColor: 'grey', width : '100%' }} key={val.id}><Text style={{ textAlign: 'center', marginTop: 5 }}>{val?.name}</Text></View>
-                        )
-                    })
-            }
+            <View style={{flex : 1,minHeight : hp('10%'), rowGap : 20,alignItems : 'center'}}>
+                    <Text style={{fontSize: getScaledFont(32), fontWeight: 'bold', color: '#000000', width: wp('50%'), marginTop : hp('5%'),marginRight : '45%' }}>Delicious food for you</Text>
+                    {/* <InputField disabledLabel inputStyles={{height : '100%', width : '90%', fontSize : getScaledFont(20), fontWeight : 'bold'}} placeholder='Search' containerStyle={styles.searchField}/> */}
+            </View>
+            <Text style={{textAlign : 'left', width : '100%', fontSize : getScaledFont(24), fontWeight : '700',color : '#000000'}}>Exclusive Deals</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ justifyContent : 'center',alignItems : 'center',columnGap : 20, height : hp('45%')}} horizontal style={{flex : 1, flexDirection : 'row',paddingVertical : '5%'}}>
+                {
+                    dummyFavouriteFoodData.map(data => (
+                        <FoodCard {...data}/>
+                    ))
+                }
+
+            </ScrollView>
+            {/* <View style={{flex : 1}}>
+
+            </View> */}
             
         </View>
     );
@@ -51,7 +76,11 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal : 10,
+        maxHeight : hp('100%'),
+        paddingLeft : '2.5%',
+        backgroundColor : appBgColour,
         justifyContent: 'center',
         alignItems : 'center'
-    }
+    },
 })

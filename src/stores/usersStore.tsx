@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { getUser } from '../api/fakeApiUser'
 
 export const useUserStore = create((set) => ({
   users: {
@@ -8,8 +7,8 @@ export const useUserStore = create((set) => ({
   },
   getUsers: async () => {
     set((state : any) => ({ users: { data : [] , loading :  true}}))
-    const response = await getUser();
-    set((state : any) => ({ users: { data : response.data , loading :  false}}))
+    // const response = await getUser();
+    set((state : any) => ({ users: { data : {} , loading :  false}}))
 },
   removeAllUsers: () => set({ users: [] }),
 }))

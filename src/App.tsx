@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import Loading from './Loading';
+import { NavigationContainer } from '@react-navigation/native';
 
 // import {
 //   Colors,
@@ -15,12 +15,12 @@ import Loading from './Loading';
 
 
 
-function App(): JSX.Element {
+function App() : JSX.Element {
   // const isDarkMode = useColorScheme() === 'dark';
   // const backgroundStyle = {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
-
+  console.log('hi')
   return (
       <NavigationContainer>
         <Loading/>

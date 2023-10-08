@@ -4,14 +4,14 @@ import {
 
 type Props = {
     children: any,
-    onPress : () => void,
-    containerStyle : object ,
+    onPress: () => void,
+    containerStyle: object,
 }
 
 
 const Button = ({
     containerStyle = {},
-    onPress  = () => {console.log('Button Pressed')},
+    onPress = () => { console.log('Button Pressed') },
     children
 }: Props) => (
     <TouchableOpacity onPress={onPress} style={containerStyle}>
